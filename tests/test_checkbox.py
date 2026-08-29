@@ -15,7 +15,7 @@ class TestCheckbox():
         self.driver.get(self.URL)
         checkboxes = self.driver.find_elements(
             By.CSS_SELECTOR,
-            CHECKBOX_ELEMENT
+            *CHECKBOX_ELEMENT
         )
 
         assert checkboxes[0].is_selected() is False
@@ -24,7 +24,7 @@ class TestCheckbox():
         checkboxes[0].click()
         checkbox = self.driver.find_element(
             By.CSS_SELECTOR,
-            CHECKBOX_ELEMENT
+            *CHECKBOX_ELEMENT
         )
 
         assert checkbox.is_selected() is True
