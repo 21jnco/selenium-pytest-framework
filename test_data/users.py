@@ -1,0 +1,5 @@
+FAILED_USERNAME = "21jnco"
+FAILED_PASSWORD = "12345"
+
+SUCCESS_USERNAME = "tomsmith"
+SUCCESS_PASSWORD = "SuperSecretPassword!"
