@@ -15,7 +15,7 @@ class TestDropdown():
 
     def test_dropdown(self):
         self.driver.get(self.URL)
-        element = self.driver.find_element(DROPDOWN_BUTTON)
+        element = self.driver.find_element(*DROPDOWN_BUTTON)
         dropdown = Select(element)
         dropdown.select_by_value("2")
         selected_text = dropdown.first_selected_option.text
