@@ -1,17 +1,11 @@
 import pytest
+from pages.login_page import LoginPage
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.by import By
 from test_data.users import (
     FAILED_USERNAME,
     SUCCESS_USERNAME,
     FAILED_PASSWORD,
-    SUCCESS_PASSWORD
-)
-from locators.login_locators import(
-    USERNAME_INPUT,
-    LOGIN_BUTTON,
-    PASSWORD_INPUT,
-    FLASH_MESSAGE
+    SUCCESS_PASSWORD,
 )
 
 class TestLogin():
@@ -19,34 +13,27 @@ class TestLogin():
     def setup(self, driver: WebDriver):
         self.driver = driver
 
-    URL = "https://the-internet.herokuapp.com/login"
     SUCCESS_MESSAGE = "You logged into a secure area!"
-    FAILED_MESSAGE = "Your username is invalid!"
+    FAILED_MESSAGE = "Your username is invalid!" 
 
     def test_success_login(self):
-        self.driver.get(self.URL)
-        element_username = self.driver.find_element(*USERNAME_INPUT)
-        element_password = self.driver.find_element(*PASSWORD_INPUT)
-        element_button = self.driver.find_element(*LOGIN_BUTTON)
+        login_page = LoginPage(self.driver)
 
-        element_username.send_keys(SUCCESS_USERNAME)
-        element_password.send_keys(SUCCESS_PASSWORD)
-        element_button.click()
-
-        message = self.driver.find_element(*FLASH_MESSAGE).text
+        login_page.open()
+        login_page.enter_username(SUCCESS_USERNAME)
+        login_page.enter_password(SUCCESS_PASSWORD)
+        login_page.click_login()
+        message = login_page.get_flash_message()
 
         assert self.SUCCESS_MESSAGE in message
 
     def test_failed_login(self):
-        self.driver.get(self.URL)
-        element_username = self.driver.find_element(*USERNAME_INPUT)
-        element_password = self.driver.find_element(*PASSWORD_INPUT)
-        element_button = self.driver.find_element(*LOGIN_BUTTON)
-
-        element_username.send_keys(FAILED_USERNAME)
-        element_password.send_keys(FAILED_PASSWORD)
-        element_button.click()
-
-        message = self.driver.find_element(*FLASH_MESSAGE).text
-
+        login_page = LoginPage(self.driver)
+        
+        login_page.open()
+        login_page.enter_username(FAILED_USERNAME)
+        login_page.enter_password(FAILED_PASSWORD)
+        login_page.click_login()
+        message = login_page.get_flash_message()
+        
         assert self.FAILED_MESSAGE in message
