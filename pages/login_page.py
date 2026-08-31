@@ -1,7 +1,3 @@
-import pytest
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from locators.login_locators import(
     USERNAME_INPUT,
     LOGIN_BUTTON,
@@ -16,11 +12,11 @@ class LoginPage(BasePage):
     def open(self):
         self.driver.get(self.URL)
 
-    def enter_username(self, USERNAME: str):
-        self.type_text(USERNAME_INPUT, USERNAME)
+    def enter_username(self, username: str):
+        self.type_text(USERNAME_INPUT, username)
 
-    def enter_password(self, PASSWORD: str):
-        self.type_text(PASSWORD_INPUT, PASSWORD)
+    def enter_password(self, password: str):
+        self.type_text(PASSWORD_INPUT, password)
 
     def click_login(self):
         self.click(LOGIN_BUTTON)
