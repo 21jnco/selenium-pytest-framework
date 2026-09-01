@@ -1,6 +1,8 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class BasePage():
@@ -9,6 +11,9 @@ class BasePage():
 
     def find_element(self, locator: tuple):
         return self.driver.find_element(*locator)
+
+    def find_elements(self, locator: tuple):
+        return self.driver.find_elements(*locator)
 
     def click(self, locator: tuple):
         wait_element = WebDriverWait(self.driver, 5).until(
@@ -26,3 +31,12 @@ class BasePage():
         ).text
 
         return wait_locator
+
+    def select(self, element: WebElement, text: str):
+        dropdown = Select(element)
+        dropdown.select_by_visible_text(text)
+
+        return dropdown
+
+    def dropdown_text(self, dropdown: Select):
+        return dropdown.first_selected_option.text
