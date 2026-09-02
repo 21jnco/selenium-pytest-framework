@@ -40,3 +40,8 @@ class BasePage():
 
     def dropdown_text(self, dropdown: Select):
         return dropdown.first_selected_option.text
+
+    def alert_is_present(self):
+        return WebDriverWait(self.driver, 10).until(
+            EC.alert_is_present()
+        )
