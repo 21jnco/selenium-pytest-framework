@@ -3,8 +3,10 @@ from pages.base_page import BasePage
 from selenium.webdriver.remote.webelement import WebElement
 
 class DropdownPage(BasePage):
-    def open(self, URL: str):
-        self.driver.get(URL)
+    URL = "https://the-internet.herokuapp.com/dropdown"
+
+    def open(self):
+        self.driver.get(self.URL)
 
     def get_element(self, locator: tuple):
         return self.find_element(locator)
