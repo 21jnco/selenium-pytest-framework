@@ -9,12 +9,10 @@ class TestCheckbox():
     def setup(self, driver: WebDriver):
         self.driver = driver
 
-    URL = "https://the-internet.herokuapp.com/checkboxes"
-
     def test_checkboxes(self):
         checkbox_page = CheckboxPage(self.driver)
 
-        checkbox_page.open(self.URL)
+        checkbox_page.open()
         checkboxes = checkbox_page.find_elements(CHECKBOX_ELEMENT)
         assert checkboxes[0].is_selected() is False
         assert checkboxes[1].is_selected() is True

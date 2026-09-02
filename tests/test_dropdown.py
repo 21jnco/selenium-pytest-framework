@@ -10,12 +10,11 @@ class TestDropdown():
         self.driver = driver
 
     OPTION = "Option 1"
-    URL = "https://the-internet.herokuapp.com/dropdown"
 
     def test_dropdown(self):
         dropdown_page = DropdownPage(self.driver)
 
-        dropdown_page.open(self.URL)
+        dropdown_page.open()
         element = dropdown_page.get_element(DROPDOWN_BUTTON)
         dropdown = dropdown_page.select_dropdown(element, self.OPTION)
         text = dropdown_page.get_dropdown_text(dropdown)

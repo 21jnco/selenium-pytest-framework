@@ -12,13 +12,12 @@ class TestDynamicLoading():
     def setup(self, driver: WebDriver):
         self.driver = driver
 
-    URL = "https://the-internet.herokuapp.com/dynamic_loading/1"
     TEXT_HELLO = "Hello World!"
 
     def test_dynamic_loading(self):
         dynamic_page = DynamicLoadingPage(self.driver)
 
-        dynamic_page.open(self.URL)
+        dynamic_page.open()
         dynamic_page.loaging_click(START_BUTTON)
         text = dynamic_page.get_hello_world_text(FINISH_LOCATOR)
         
